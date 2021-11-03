@@ -63,5 +63,7 @@ namespace StartToBike.Models
                 .HasForeignKey(e => e.PerformanceId)
                 .WillCascadeOnDelete(false);
         }
+
+        public System.Data.Entity.DbSet<StartToBike.Models.Training> Trainings { get; set; }
     }
 }
