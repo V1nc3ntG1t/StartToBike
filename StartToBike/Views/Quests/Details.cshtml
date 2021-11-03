@@ -1,0 +1,34 @@
+﻿@model StartToBike.Models.Quest
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Quest</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestLevel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestLevel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestTask)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestTask)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.QuestId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

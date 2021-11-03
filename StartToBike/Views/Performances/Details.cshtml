@@ -1,0 +1,50 @@
+﻿@model StartToBike.Models.Performance
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Performance</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Distance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Distance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Altitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Altitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PerformanceId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

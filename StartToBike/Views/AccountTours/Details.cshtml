@@ -1,0 +1,42 @@
+﻿@model StartToBike.Models.AccountTour
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AccountTour</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Account.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Account.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Performance.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Performance.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tour.TourName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tour.TourName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
