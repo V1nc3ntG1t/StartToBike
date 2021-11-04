@@ -2,6 +2,15 @@
 
 @{
     ViewBag.Title = "Edit";
+
+    ///<summary>
+    ///Makes a list for the levels
+    /// </summary>
+    List<SelectListItem> LevelList = new List<SelectListItem>();
+    LevelList.Add(new SelectListItem() { Text = "Level 1", Value = "1" });
+    LevelList.Add(new SelectListItem() { Text = "Level 2", Value = "2" });
+    LevelList.Add(new SelectListItem() { Text = "Level 3", Value = "3" });
+    LevelList.Add(new SelectListItem() { Text = "Level 4", Value = "4" });
 }
 
 <h2>Edit</h2>
@@ -28,7 +37,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Level, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Level, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("Level", LevelList, "Select Level", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Level, "", new { @class = "text-danger" })
             </div>
         </div>

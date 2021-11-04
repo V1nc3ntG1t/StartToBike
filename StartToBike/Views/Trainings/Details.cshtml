@@ -1,4 +1,4 @@
-﻿@model StartToBike.Models.Training
+﻿@model StartToBike.ViewModels.UsersPerTraining
 
 @{
     ViewBag.Title = "Details";
@@ -7,28 +7,62 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Training</h4>
+    <h4>Training "@Html.DisplayFor(model => model.Training.Title)"</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayFor(model => model.Training.Title)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.Training.Level)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Level)
+            @Html.DisplayFor(model => model.Training.Level)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Level)
+            Current participants
         </dd>
-
+        <dt>
+            @Html.DisplayFor(model => model.Training.Users.Count)
+        </dt>
     </dl>
 </div>
+
+<div>
+    <h4>Users in Training</h4>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Users.FirstOrDefault().UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users.FirstOrDefault().Email)
+            </th>
+            <th>
+            </th>
+        </tr>
+
+        @foreach (var item in Model.Users)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.UserName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.ActionLink("Remove", "RemoveUserFromGame", new { trainingid = Model.Training.TrainingID, accountid = item.AccountId })
+    </td>
+
+</tr>}
+
+    </table>
+</div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.TrainingID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Training.TrainingID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
