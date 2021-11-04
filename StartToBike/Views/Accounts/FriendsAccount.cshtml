@@ -9,7 +9,7 @@
 <p style="color: red; font-size: large;">@ViewBag.ErrorMessage</p>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add Friend", "Create", "Friends")
 </p>
 
 <div>
@@ -28,7 +28,9 @@
                     @Html.DisplayFor(modelItem => item.UserName)
                 </td>
                 <td>
-                    @Html.ActionLink("Details", "Details", "Accounts", new { id = item.AccountId })
+                    @Html.ActionLink("Details", "Details", new { id = item.AccountId })
+
+                    @Html.ActionLink("Remove Friend", "RemoveFriend", new { id = item.AccountId })
                 </td>
             </tr>
         }
