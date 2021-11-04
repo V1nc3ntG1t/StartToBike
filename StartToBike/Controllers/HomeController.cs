@@ -13,7 +13,7 @@ namespace StartToBike.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Leaderboard()
         {
             ViewBag.Message = "Your application description page.";
 
@@ -26,5 +26,13 @@ namespace StartToBike.Controllers
 
             return View();
         }
+        //int kilomter = 10;
+        //public void Vooruitgang(int kilometer)
+        //{
+        //    if (true)
+        //    {
+        //        VooruitgangTxt.Text = 'laag';
+        //    }
+        //}
     }
 }

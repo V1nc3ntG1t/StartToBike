@@ -140,7 +140,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-
     <Compile Include="Migrations\202111031924548_InitialCreate.cs" />
     <Compile Include="Migrations\202111031924548_InitialCreate.Designer.cs">
       <DependentUpon>202111031924548_InitialCreate.cs</DependentUpon>
@@ -148,7 +147,10 @@
     <Compile Include="Migrations\202111031933340_Training.cs" />
     <Compile Include="Migrations\202111031933340_Training.Designer.cs">
       <DependentUpon>202111031933340_Training.cs</DependentUpon>
-
+    </Compile>
+    <Compile Include="Migrations\202111041748524_Checkbox.cs" />
+    <Compile Include="Migrations\202111041748524_Checkbox.Designer.cs">
+      <DependentUpon>202111041748524_Checkbox.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -255,13 +257,14 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-
     <EmbeddedResource Include="Migrations\202111031924548_InitialCreate.resx">
       <DependentUpon>202111031924548_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111031933340_Training.resx">
       <DependentUpon>202111031933340_Training.cs</DependentUpon>
-
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111041748524_Checkbox.resx">
+      <DependentUpon>202111041748524_Checkbox.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
