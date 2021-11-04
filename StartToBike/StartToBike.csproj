@@ -136,12 +136,19 @@
     <Compile Include="Controllers\PerformancesController.cs" />
     <Compile Include="Controllers\QuestsController.cs" />
     <Compile Include="Controllers\ToursController.cs" />
+    <Compile Include="Controllers\TrainingsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202111031921479_InitialCreate.cs" />
-    <Compile Include="Migrations\202111031921479_InitialCreate.Designer.cs">
-      <DependentUpon>202111031921479_InitialCreate.cs</DependentUpon>
+
+    <Compile Include="Migrations\202111031924548_InitialCreate.cs" />
+    <Compile Include="Migrations\202111031924548_InitialCreate.Designer.cs">
+      <DependentUpon>202111031924548_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111031933340_Training.cs" />
+    <Compile Include="Migrations\202111031933340_Training.Designer.cs">
+      <DependentUpon>202111031933340_Training.cs</DependentUpon>
+
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -152,6 +159,7 @@
     <Compile Include="Models\Performance.cs" />
     <Compile Include="Models\Quest.cs" />
     <Compile Include="Models\Tour.cs" />
+    <Compile Include="Models\Training.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -224,6 +232,11 @@
     <Content Include="Views\Tours\Details.cshtml" />
     <Content Include="Views\Tours\Edit.cshtml" />
     <Content Include="Views\Tours\Index.cshtml" />
+    <Content Include="Views\Trainings\Create.cshtml" />
+    <Content Include="Views\Trainings\Delete.cshtml" />
+    <Content Include="Views\Trainings\Details.cshtml" />
+    <Content Include="Views\Trainings\Edit.cshtml" />
+    <Content Include="Views\Trainings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -242,8 +255,13 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202111031921479_InitialCreate.resx">
-      <DependentUpon>202111031921479_InitialCreate.cs</DependentUpon>
+
+    <EmbeddedResource Include="Migrations\202111031924548_InitialCreate.resx">
+      <DependentUpon>202111031924548_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111031933340_Training.resx">
+      <DependentUpon>202111031933340_Training.cs</DependentUpon>
+
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

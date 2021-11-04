@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - StartToBike</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -19,6 +19,7 @@
                     <span class="icon-bar"></span>
                 </button>
 
+
                 @Html.ActionLink("BIKE&RIDE", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
@@ -29,6 +30,7 @@
                     <li>@Html.ActionLink("Vrienden", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Leaderboard", "Leaderboard", "Home")</li>
                     <li>@Html.ActionLink("Tours", "Index", "Tours")</li>
+
                 </ul>
                 @*<img id="logo-front" src="~/Content/img/logo.png" />*@
               
@@ -41,7 +43,9 @@
         <hr />
 
         <footer>
+
             <p>&copy; @DateTime.Now.Year - BIKE&RIDE</p>
+
         </footer>
     </div>
     @Scripts.Render("~/bundles/jquery")
