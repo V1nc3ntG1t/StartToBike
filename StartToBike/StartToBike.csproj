@@ -294,7 +294,9 @@
     <Content Include="Views\Friends\Edit.cshtml" />
     <Content Include="Views\Friends\Index.cshtml" />
     <Content Include="Views\Accounts\DetailsLogInAccount.cshtml" />
-    <Content Include="Views\Friends\FriendsAccount.cshtml" />
+    <Content Include="Views\Accounts\FriendsAccount.cshtml" />
+    <Content Include="Views\Challenges\ChallengesAccount.cshtml" />
+    <Content Include="Views\Accounts\FriendsToChallenge.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

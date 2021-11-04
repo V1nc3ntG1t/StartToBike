@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using StartToBike.Models;
+using StartToBike.ViewModels;
 
 namespace StartToBike.Controllers
 {
@@ -160,6 +161,10 @@ namespace StartToBike.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Account account = db.Account.Find(id);
+
+            ///<summary>
+            ///removes the account
+            /// </summary>
             db.Account.Remove(account);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -217,6 +222,76 @@ namespace StartToBike.Controllers
             }
 
             return RedirectToAction("Login");
+        }
+
+        public ActionResult FriendsAccount()
+        {
+            ///<summary>
+            ///Check if the user is already logged in 
+            /// </summary>
+            Account logInAccount = Account.LogInAccount;
+            if (logInAccount == null)
+            {
+                return RedirectToAction("Login", "Accounts");
+            }
+
+            ///<summary>
+            ///Fills in the friends for the account who logged in
+            /// </summary>
+            AccountFriends accountFriends = new AccountFriends();
+            accountFriends.Account = db.Account.Find(logInAccount.AccountId);
+            accountFriends.Friends = db.Friend.Where(a => a.Friend2Id == logInAccount.AccountId).Select(a => a.Account);
+
+            return View(accountFriends);
+        }
+
+        public ActionResult RemoveFriend(int id)
+        {
+            Account logInAccount = Account.LogInAccount;
+
+            ///<summary>
+            ///removes friendship
+            /// </summary>
+            Friend friend = db.Friend.First(a => a.Friend1Id == id & a.Friend2Id == logInAccount.AccountId);
+            db.Friend.Remove(friend);
+
+            ///<summary>
+            ///removes friendship from the friend as well
+            /// </summary>
+            Friend friend2 = db.Friend.First(a => a.Friend2Id == id & a.Friend1Id == logInAccount.AccountId);
+            db.Friend.Remove(friend2);
+
+            db.SaveChanges();
+
+            return RedirectToAction("FriendsAccount", "Accounts");
+        }
+
+        public ActionResult FriendsToChallenge()
+        {
+            ///<summary>
+            ///Check if the user is already logged in 
+            /// </summary>
+            Account logInAccount = Account.LogInAccount;
+            if (logInAccount == null)
+            {
+                return RedirectToAction("Login", "Accounts");
+            }
+
+            ///<summary>
+            ///Fills in the friends for the account who logged in
+            /// </summary>
+            AccountFriends accountFriends = new AccountFriends();
+            accountFriends.Account = db.Account.Find(logInAccount.AccountId);
+            accountFriends.Friends = db.Friend.Where(a => a.Friend2Id == logInAccount.AccountId).Select(a => a.Account);
+
+            return View(accountFriends);
+        }
+
+        public ActionResult CreateChallenge(int id)
+        {
+            Friend.FriendToChallenge = db.Account.Find(id);
+
+            return RedirectToAction("Create", "Challenges");
         }
     }
 }

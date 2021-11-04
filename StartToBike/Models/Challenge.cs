@@ -26,11 +26,35 @@ namespace StartToBike.Models
         public string Reward { get; set; }
 
         public string Task { get; set; }
+        public string Status { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Account> Account { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tour> Tour { get; set; }
+
+        public Boolean CreateChallenge()
+        {
+            ///<summary>
+            ///sets startdate
+            /// </summary>
+            StartDate = DateTime.Now;
+
+            Status = "Open";
+
+            return true;
+        }
+
+        public Boolean ChallengeCompleted()
+        {
+            if (Status == "Challenge Completed")
+            {
+                return false;
+            }
+
+            Status = "Challenge Completed";
+            return true;
+        }
     }
 }
