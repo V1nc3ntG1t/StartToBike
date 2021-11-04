@@ -19,7 +19,15 @@ namespace StartToBike.Controllers
         {
             return View(db.Tour.ToList());
         }
-
+        public ActionResult HomeScreen()
+        {
+            return View();
+        }
+        public ActionResult TourAccount()
+        {
+            return View();
+        }
+        
         // GET: Tours/Details/5
         public ActionResult Details(int? id)
         {
@@ -123,5 +131,38 @@ namespace StartToBike.Controllers
             }
             base.Dispose(disposing);
         }
+        public  ActionResult JoinTour(int id)
+
+        {
+            // This is the log in account
+            Account account = Account.LogInAccount;
+            // this is the id of the tour
+            Tour tOUR = db.Tour.Find(id);
+            AccountTour logInAccount = db.AccountTour.First(g => g.TourId == id && g.AccountId == account.AccountId);
+
+            var t = new AccountTour
+            {
+                TourId = tOUR.TourId,
+                AccountId = logInAccount.AccountId,
+            };
+
+            Tour game = new Tour();
+           
+
+            var exists = db.AccountTour.Where(g => g.TourId == tOUR.TourId).Where(g => g.AccountId == logInAccount.AccountId).AnyAsync();
+            // Hier moet ik kijken naar of het account de tour heeft gejoined
+            if (exists)
+            {
+                return RedirectToAction("Index", new { error = "You already joined the game!" });
+            }
+            else
+            {
+                db.AccountTour.Add(t);
+                db.SaveChanges();
+                return RedirectToAction("Index", new { error = "You succesfully joined the game!" });
+            }
+
+        }
+        
     }
 }
