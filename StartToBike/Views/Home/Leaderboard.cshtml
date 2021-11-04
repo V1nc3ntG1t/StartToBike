@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<center>
+    @* opening text, shows username and intro text *@
+    <div class="jumbotron">
+        <h1>Leaderboard</h1>
+        <h2>@HttpContext.Current.User.Identity.Name, sta jij vandaag bovenaan?</h2>
+        <p> Selecteer hieronder waar jij graag een leaderboard van wilt zien.</p>
+    </div>
+    @Html.DropDownList("MySkills", new List<SelectListItem>
+{
+   new SelectListItem{ Text="Kilometers", Value = "1" },
+   new SelectListItem{ Text="Hoogtemeters", Value = "2" },
+   new SelectListItem{ Text="Gemiddelde snelheid", Value = "3" },
+   new SelectListItem{ Text="Segment", Value = "4" },
+   new SelectListItem{ Text="Aantal tours", Value = "5" },
+   new SelectListItem{ Text="Gemiddeld aantal ritten", Value = "6" },
+})
+</center>
