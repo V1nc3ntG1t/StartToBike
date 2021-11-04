@@ -21,6 +21,18 @@ namespace StartToBike.Controllers
             return View(db.Trainings.ToList());
         }
 
+        /*// GET: Trainings/Catalog
+        public ActionResult JoinTraining()
+        {
+            return View();
+        }*/
+
+        // GET: Trainings/Join
+        public ActionResult Catalog()
+        {
+            return View(db.Trainings.ToList());
+        }
+
         // GET: Trainings/Details/5
         public ActionResult Details(int? id)
         {

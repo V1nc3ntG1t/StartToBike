@@ -145,13 +145,9 @@
     <Compile Include="Migrations\202111031924548_InitialCreate.Designer.cs">
       <DependentUpon>202111031924548_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202111031933340_Training.cs" />
-    <Compile Include="Migrations\202111031933340_Training.Designer.cs">
-      <DependentUpon>202111031933340_Training.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111041907049_Training1.cs" />
-    <Compile Include="Migrations\202111041907049_Training1.Designer.cs">
-      <DependentUpon>202111041907049_Training1.cs</DependentUpon>
+    <Compile Include="Migrations\202111042141280_Training.cs" />
+    <Compile Include="Migrations\202111042141280_Training.Designer.cs">
+      <DependentUpon>202111042141280_Training.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Friend.cs" />
@@ -287,7 +283,7 @@
     <Content Include="Views\Trainings\Delete.cshtml" />
     <Content Include="Views\Trainings\Details.cshtml" />
     <Content Include="Views\Trainings\Edit.cshtml" />
-    <Content Include="Views\Trainings\Index.cshtml" />
+    <Content Include="Views\Trainings\Catalog.cshtml" />
     <Content Include="Views\Friends\Create.cshtml" />
     <Content Include="Views\Friends\Delete.cshtml" />
     <Content Include="Views\Friends\Details.cshtml" />
@@ -297,6 +293,8 @@
     <Content Include="Views\Accounts\FriendsAccount.cshtml" />
     <Content Include="Views\Challenges\ChallengesAccount.cshtml" />
     <Content Include="Views\Accounts\FriendsToChallenge.cshtml" />
+    <Content Include="Views\Trainings\Admin.cshtml" />
+    <Content Include="Views\Trainings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -318,11 +316,8 @@
     <EmbeddedResource Include="Migrations\202111031924548_InitialCreate.resx">
       <DependentUpon>202111031924548_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111031933340_Training.resx">
-      <DependentUpon>202111031933340_Training.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111041907049_Training1.resx">
-      <DependentUpon>202111041907049_Training1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202111042141280_Training.resx">
+      <DependentUpon>202111042141280_Training.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

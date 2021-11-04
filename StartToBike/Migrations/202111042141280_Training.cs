@@ -3,7 +3,7 @@ namespace StartToBike.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Training1 : DbMigration
+    public partial class Training : DbMigration
     {
         public override void Up()
         {
