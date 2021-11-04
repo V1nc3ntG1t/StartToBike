@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using StartToBike.Models;
+using StartToBike.ViewModels;
 
 namespace StartToBike.Controllers
 {
@@ -27,12 +28,79 @@ namespace StartToBike.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Training training = db.Trainings.Find(id);
+
+            var usersPerTraining = new UsersPerTraining();
+            usersPerTraining.Training = db.Trainings.Where(g => g.TrainingID == id).Include(g => g.Users).FirstOrDefault();
+            usersPerTraining.Users = usersPerTraining.Training.Users;
+
+            if (usersPerTraining.Training == null)
+            {
+                return HttpNotFound();
+            }
+            return View(usersPerTraining);
+
+           /* Training training = db.Trainings.Find(id);
             if (training == null)
             {
                 return HttpNotFound();
             }
-            return View(training);
+            return View(training);*/
+        }
+
+        // GET: Trainings/RemoveUserFromTraining?gameid=1&userid=1
+        public ActionResult RemoveUserFromTraining(int? trainingid, int? accountid)
+        {
+            if (trainingid == null || accountid == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var userPerTraining = new UsersPerTraining();
+            var theTraining = db.Trainings.Where(g => g.TrainingID == trainingid).Include(g => g.Users).FirstOrDefault();
+            Account userToRemove = theTraining.Users.Single(u => u.AccountId == accountid);
+            theTraining.Users.Remove(userToRemove);
+            db.SaveChanges();
+
+            userPerTraining.Training = theTraining;
+            userPerTraining.Users = userPerTraining.Training.Users;
+
+            if (userPerTraining.Training == null)
+            {
+                return HttpNotFound();
+            }
+            return View("Details", userPerTraining);
+        }
+
+        // GET: Game/RemoveUserFromTraining?gameid=1&userid=1
+        public ActionResult AddAllUsersToTraining(int? trainingid)
+        {
+            if (trainingid == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var userPerTraining = new UsersPerTraining();
+            var theTraining = db.Trainings.Where(g => g.TrainingID == trainingid).Include(g => g.Users).FirstOrDefault();
+
+            // add all users
+            var allUsers = db.Account.ToList<Account>();
+            if (theTraining.AddUsersToTraining(allUsers))
+            {
+                db.SaveChanges();
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            userPerTraining.Training = theTraining;
+            userPerTraining.Users = userPerTraining.Training.Users;
+
+            if (userPerTraining.Training == null)
+            {
+                return HttpNotFound();
+            }
+            return View("Details", userPerTraining);
         }
 
         // GET: Trainings/Create
