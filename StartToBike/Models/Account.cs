@@ -12,6 +12,9 @@ namespace StartToBike.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Account()
         {
+            Friend = new HashSet<Friend>();
+            Friend1 = new HashSet<Friend>();
+
             AccountTour = new HashSet<AccountTour>();
             Challenge = new HashSet<Challenge>();
             Quest = new HashSet<Quest>();
@@ -66,6 +69,11 @@ namespace StartToBike.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Quest> Quest { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Friend> Friend { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Friend> Friend1 { get; set; }
 
         ///<summary>
         ///Save an object from the account what logged in

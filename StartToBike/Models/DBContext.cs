@@ -19,9 +19,22 @@ namespace StartToBike.Models
         public virtual DbSet<Quest> Quest { get; set; }
         public virtual DbSet<Tour> Tour { get; set; }
         public virtual DbSet<AccountTour> AccountTour { get; set; }
+        public virtual DbSet<Friend> Friend { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Account>()
+                .HasMany(e => e.Friend)
+                .WithRequired(e => e.Account)
+                .HasForeignKey(e => e.Friend1Id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Account>()
+                .HasMany(e => e.Friend1)
+                .WithRequired(e => e.Account1)
+                .HasForeignKey(e => e.Friend2Id)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Account>()
                 .HasMany(e => e.AccountTour)
                 .WithRequired(e => e.Account)
