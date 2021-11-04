@@ -54,18 +54,18 @@ namespace StartToBike.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "AccountId,Email,Name,UserName,BirthDate,Gender,Password,City,RoleId,TrainingLevel")] Account _Account, HttpPostedFileBase image)
+        public async Task<ActionResult> Create([Bind(Include = "AccountId,Email,Name,UserName,BirthDate,Gender,Password,City,RoleId,TrainingLevel")] Account _account, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
-                var exists = await db.Account.Where(a => a.UserName == _Account.UserName).AnyAsync();
+                var exists = await db.Account.Where(a => a.UserName == _account.UserName).AnyAsync();
                 if (exists)
                 {
                     return RedirectToAction("Create", new { error = "This UserName already exists!" });
                 }
                 else
                 {
-                    bool Valid = _Account.CreateAccount();
+                    bool Valid = _account.CreateAccount();
                     if (Valid)
                     {
                         ///<summary>
@@ -73,26 +73,26 @@ namespace StartToBike.Controllers
                         /// </summary>
                         if (image != null)
                         {
-                            _Account.Picture = new byte[image.ContentLength];
-                            image.InputStream.Read(_Account.Picture, 0, image.ContentLength);
+                            _account.Picture = new byte[image.ContentLength];
+                            image.InputStream.Read(_account.Picture, 0, image.ContentLength);
                         }
 
-                        db.Account.Add(_Account);
+                        db.Account.Add(_account);
 
                         db.SaveChanges();
                         return RedirectToAction("Login", "Accounts");
                     }
 
-                    ViewBag.RoleId = new SelectList(db.AccountCatalog, "RoleId", "AccountRole", _Account.RoleId);
-                    return View(_Account);
+                    ViewBag.RoleId = new SelectList(db.AccountCatalog, "RoleId", "AccountRole", _account.RoleId);
+                    return View(_account);
                 }
             }
 
             ///<summary>
             ///The User will see an error message if something is not right
             /// </summary>
-            ViewBag.RoleId = new SelectList(db.AccountCatalog, "RoleId", "AccountRole", _Account.RoleId);
-            return View(_Account);
+            ViewBag.RoleId = new SelectList(db.AccountCatalog, "RoleId", "AccountRole", _account.RoleId);
+            return View(_account);
 
 
             //     if (ModelState.IsValid)
@@ -183,12 +183,12 @@ namespace StartToBike.Controllers
 
         [HttpPost, ActionName("Login")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login([Bind(Include = "UserName,Password")] Account _Account)
+        public async Task<ActionResult> Login([Bind(Include = "UserName,Password")] Account _account)
         {
-            var exists = await db.Account.Where(a => a.UserName == _Account.UserName).Where(a => a.Password == _Account.Password).AnyAsync();
+            var exists = await db.Account.Where(a => a.UserName == _account.UserName).Where(a => a.Password == _account.Password).AnyAsync();
             if (exists)
             {
-                Account logInAccount = db.Account.First(a => a.UserName == _Account.UserName);
+                Account logInAccount = db.Account.First(a => a.UserName == _account.UserName);
 
                 Account.LogInAccount = logInAccount;
 
@@ -200,6 +200,23 @@ namespace StartToBike.Controllers
                 // foutmelding
                 return RedirectToAction("Login", new { error = "Try again!" });
             }
+        }
+
+        // GET: Accounts/Details/5
+        public ActionResult DetailsLogInAccount()
+        {
+            ///<summary>
+            ///Gets the account who logged in
+            /// </summary>
+            Account logInAccount = Account.LogInAccount;
+            
+            if (logInAccount != null)
+            {
+                Account account = db.Account.Find(logInAccount.AccountId);
+                return View(account);
+            }
+
+            return RedirectToAction("Login");
         }
     }
 }

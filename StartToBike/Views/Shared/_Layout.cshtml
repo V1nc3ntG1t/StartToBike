@@ -27,7 +27,7 @@
                     <li>@Html.ActionLink("Challanges", "Index", "Challenges")</li>
                     <li>@Html.ActionLink("Quests", "Index", "Quests")</li>
                     <li>@Html.ActionLink("Trainingsschema", "#", "#")</li>
-                    <li>@Html.ActionLink("Vrienden", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Vrienden", "FriendsAccount", "Friends")</li>
                     <li>@Html.ActionLink("Leaderboard", "Leaderboard", "Home")</li>
                     <li>@Html.ActionLink("Tours", "Index", "Tours")</li>
 
@@ -37,9 +37,8 @@
             </div>
 
             <ul class="nav navbar-nav navbar-right">
-
+                <li>@Html.ActionLink("Your Account", "DetailsLogInAccount", "Accounts")</li>
                 <li>@Html.ActionLink("Register", "Create", "Accounts")</li>
-
                 <li>@Html.ActionLink("Log in", "Login", "Accounts")</li>
             </ul>
         </div>
