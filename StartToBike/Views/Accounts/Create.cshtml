@@ -2,15 +2,32 @@
 
 @{
     ViewBag.Title = "Create";
+
+    ///<summary>
+    ///Makes a list for the genders
+    /// </summary>
+    List<SelectListItem> GenderList = new List<SelectListItem>();
+    GenderList.Add(new SelectListItem() { Text = "Male", Value = "Male" });
+    GenderList.Add(new SelectListItem() { Text = "Female", Value = "Female" });
+
+    ///<summary>
+    ///Makes a list for the traininglevels
+    /// </summary>
+    List<SelectListItem> TrainingLevelList = new List<SelectListItem>();
+    TrainingLevelList.Add(new SelectListItem() { Text = "Level 1", Value = "1" });
+    TrainingLevelList.Add(new SelectListItem() { Text = "Level 2", Value = "2" });
+    TrainingLevelList.Add(new SelectListItem() { Text = "Level 3", Value = "3" });
+    TrainingLevelList.Add(new SelectListItem() { Text = "Level 4", Value = "4" });
 }
 
 <h2>Create</h2>
 
+<p style="color: red; font-size: large;">@ViewBag.ErrorMessage</p>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Accounts", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Account</h4>
         <hr />
@@ -32,9 +49,17 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.BirthDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control", placeholder = "Date Of Birth", @readonly = "true" } })
                 @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -42,7 +67,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("Gender", GenderList, "Select gender", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -50,7 +75,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -66,8 +91,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Picture, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Picture, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Picture, "", new { @class = "text-danger" })
+                <input type="file" id="image" name="image" />
             </div>
         </div>
 
@@ -80,10 +104,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TrainingId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TrainingLevel, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TrainingId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TrainingId, "", new { @class = "text-danger" })
+                @Html.DropDownList("Training Level", TrainingLevelList, "Select Training Level", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TrainingLevel, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -99,6 +123,24 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
+
+
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('input[type=datetime]').datepicker({
+                dateFormat: "dd/M/yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+0"
+            });
+
+        });
+    </script>
+
+} 

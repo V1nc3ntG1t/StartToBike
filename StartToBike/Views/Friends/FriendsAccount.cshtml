@@ -1,0 +1,40 @@
+﻿@model StartToBike.ViewModels.AccountFriends
+
+@{
+    ViewBag.Title = "FriendsAccount";
+}
+
+<h2>Friends</h2>
+
+<p style="color: red; font-size: large;">@ViewBag.ErrorMessage</p>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Friends.FirstOrDefault().UserName)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Friends)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", "Accounts", new { id = item.AccountId })
+                </td>
+            </tr>
+        }
+
+
+
+    </table>
+
+</div>
