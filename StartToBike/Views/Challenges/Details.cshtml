@@ -42,9 +42,68 @@
             @Html.DisplayFor(model => model.Task)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
     </dl>
 </div>
+
+<h2>Accounts in the challenge</h2>
+
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Account.FirstOrDefault().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Account.FirstOrDefault().UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Account.FirstOrDefault().BirthDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Account.FirstOrDefault().City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Account.FirstOrDefault().Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Account.FirstOrDefault().Picture)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Account)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirthDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    <img src="data:image;base64,@Convert.ToBase64String(item.Picture)" />
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ChallengeId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "ChallengesAccount")
 </p>

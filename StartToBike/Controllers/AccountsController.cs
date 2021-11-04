@@ -265,5 +265,33 @@ namespace StartToBike.Controllers
 
             return RedirectToAction("FriendsAccount", "Accounts");
         }
+
+        public ActionResult FriendsToChallenge()
+        {
+            ///<summary>
+            ///Check if the user is already logged in 
+            /// </summary>
+            Account logInAccount = Account.LogInAccount;
+            if (logInAccount == null)
+            {
+                return RedirectToAction("Login", "Accounts");
+            }
+
+            ///<summary>
+            ///Fills in the friends for the account who logged in
+            /// </summary>
+            AccountFriends accountFriends = new AccountFriends();
+            accountFriends.Account = db.Account.Find(logInAccount.AccountId);
+            accountFriends.Friends = db.Friend.Where(a => a.Friend2Id == logInAccount.AccountId).Select(a => a.Account);
+
+            return View(accountFriends);
+        }
+
+        public ActionResult CreateChallenge(int id)
+        {
+            Friend.FriendToChallenge = db.Account.Find(id);
+
+            return RedirectToAction("Create", "Challenges");
+        }
     }
 }

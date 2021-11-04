@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using StartToBike.Models;
+using StartToBike.ViewModels;
 
 namespace StartToBike.Controllers
 {
@@ -46,13 +47,24 @@ namespace StartToBike.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ChallengeId,ChallengeName,StartDate,Reward,Task")] Challenge challenge)
+        public ActionResult Create([Bind(Include = "ChallengeId,ChallengeName,Reward,Task")] Challenge challenge)
         {
             if (ModelState.IsValid)
             {
-                db.Challenge.Add(challenge);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                Boolean Valid = challenge.CreateChallenge();
+
+                if (Valid)
+                {
+                    Account logInAccount = Account.LogInAccount;
+                    Account accountToChallenge = Friend.FriendToChallenge;
+
+                    challenge.Account.Add(logInAccount);
+                    challenge.Account.Add(accountToChallenge);
+
+                    db.Challenge.Add(challenge);
+                    db.SaveChanges();
+                    return RedirectToAction("ChallengesAccount");
+                }
             }
 
             return View(challenge);
@@ -122,6 +134,43 @@ namespace StartToBike.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult ChallengesAccount(string error)
+        {
+            ViewBag.ErrorMessage = error;
+
+            ///<summary>
+            ///Check if the user is already logged in 
+            /// </summary>
+            Account logInAccount = Account.LogInAccount;
+            if (logInAccount == null)
+            {
+                return RedirectToAction("Login", "Accounts");
+            }
+
+            ///<summary>
+            ///Fills in the challenges for the account who logged in
+            /// </summary>
+            var account = db.Account.Include(x => x.Challenge).FirstOrDefault(x => x.AccountId == logInAccount.AccountId);
+            return View(account);
+        }
+
+        public ActionResult ChallengeCompleted(int id)
+        {
+            Challenge challenge = db.Challenge.Find(id);
+
+            Boolean Valid = challenge.ChallengeCompleted();
+
+
+            db.SaveChanges();
+
+            if (Valid)
+            {
+                return RedirectToAction("ChallengesAccount", new { error = "You completed the challenge!" });
+            }
+
+            return RedirectToAction("ChallengesAccount", new { error = "Error, You can't complete the challenge!" });
         }
     }
 }

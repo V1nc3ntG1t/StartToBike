@@ -27,6 +27,10 @@ namespace StartToBike.Models
 
         public virtual Account Account1 { get; set; }
 
+        ///<summary>who you want to challenge
+        /// </summary>
+        public static Account FriendToChallenge;
+
         public Boolean CreateFriendship()
         {
             ///<summary>
