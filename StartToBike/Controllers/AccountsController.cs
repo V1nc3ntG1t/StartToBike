@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using StartToBike.Models;
@@ -37,8 +38,13 @@ namespace StartToBike.Controllers
         }
 
         // GET: Accounts/Create
-        public ActionResult Create()
+        public ActionResult Create(string error)
         {
+            ///<summary>
+            ///Shows the user the specific error message
+            /// </summary>
+            ViewBag.ErrorMessage = error;
+
             ViewBag.RoleId = new SelectList(db.AccountCatalog, "RoleId", "AccountRole");
             return View();
         }
@@ -48,17 +54,56 @@ namespace StartToBike.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AccountId,Email,Name,BirthDate,Gender,Password,City,Picture,RoleId,TrainingId")] Account account)
+        public async Task<ActionResult> Create([Bind(Include = "AccountId,Email,Name,UserName,BirthDate,Gender,Password,City,RoleId,TrainingLevel")] Account _Account, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
-                db.Account.Add(account);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var exists = await db.Account.Where(a => a.UserName == _Account.UserName).AnyAsync();
+                if (exists)
+                {
+                    return RedirectToAction("Create", new { error = "This UserName already exists!" });
+                }
+                else
+                {
+                    bool Valid = _Account.CreateAccount();
+                    if (Valid)
+                    {
+                        ///<summary>
+                        ///Add picture
+                        /// </summary>
+                        if (image != null)
+                        {
+                            _Account.Picture = new byte[image.ContentLength];
+                            image.InputStream.Read(_Account.Picture, 0, image.ContentLength);
+                        }
+
+                        db.Account.Add(_Account);
+
+                        db.SaveChanges();
+                        return RedirectToAction("Login", "Accounts");
+                    }
+
+                    ViewBag.RoleId = new SelectList(db.AccountCatalog, "RoleId", "AccountRole", _Account.RoleId);
+                    return View(_Account);
+                }
             }
 
-            ViewBag.RoleId = new SelectList(db.AccountCatalog, "RoleId", "AccountRole", account.RoleId);
-            return View(account);
+            ///<summary>
+            ///The User will see an error message if something is not right
+            /// </summary>
+            ViewBag.RoleId = new SelectList(db.AccountCatalog, "RoleId", "AccountRole", _Account.RoleId);
+            return View(_Account);
+
+
+            //     if (ModelState.IsValid)
+            //     {
+            //         db.Account.Add(account);
+            //         db.SaveChanges();
+            //         return RedirectToAction("Index");
+            //     }
+            //
+            //     ViewBag.RoleId = new SelectList(db.AccountCatalog, "RoleId", "AccountRole", account.RoleId);
+            //     return View(account);
         }
 
         // GET: Accounts/Edit/5
@@ -127,6 +172,34 @@ namespace StartToBike.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Login(string error)
+        {
+            ViewBag.ErrorMessage = error;
+            return View();
+
+        }
+
+        [HttpPost, ActionName("Login")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Login([Bind(Include = "UserName,Password")] Account _Account)
+        {
+            var exists = await db.Account.Where(a => a.UserName == _Account.UserName).Where(a => a.Password == _Account.Password).AnyAsync();
+            if (exists)
+            {
+                Account logInAccount = db.Account.First(a => a.UserName == _Account.UserName);
+
+                Account.LogInAccount = logInAccount;
+
+                return RedirectToAction("", "");
+            }
+
+            else
+            {
+                // foutmelding
+                return RedirectToAction("Login", new { error = "Try again!" });
+            }
         }
     }
 }
