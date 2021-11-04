@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using StartToBike.Models;
@@ -50,13 +51,43 @@ namespace StartToBike.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Friend1Id,Friend2Id,StartDate")] Friend friend)
+        public async Task<ActionResult> Create([Bind(Include = "Friend2Id")] Friend friend)
         {
+            Account logInAccount = Account.LogInAccount;
+
             if (ModelState.IsValid)
             {
-                db.Friend.Add(friend);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var existsCombination1 = await db.Friend.Where(a => a.Friend2Id == friend.Friend2Id).Where(a => a.Friend1Id == logInAccount.AccountId).AnyAsync();
+                if (existsCombination1)
+                {
+                    return RedirectToAction("FriendsAccount", "Accounts");
+                }
+
+                var existsCombination2 = await db.Friend.Where(a => a.Friend1Id == friend.Friend2Id).Where(a => a.Friend2Id == logInAccount.AccountId).AnyAsync();
+                if (existsCombination2)
+                {
+                    return RedirectToAction("FriendsAccount", "Accounts");
+                }
+
+
+                bool Valide = friend.CreateFriendship();
+
+                if (Valide == true)
+                {
+                    db.Friend.Add(friend);
+
+                    ///<summary>
+                    ///Also makes sure the other user has the logged in account as a friend
+                    /// </summary>
+                    Friend friend2 = new Friend();
+                    friend2.StartDate = friend.StartDate;
+                    friend2.Friend1Id = friend.Friend2Id;
+                    friend2.Friend2Id = friend.Friend1Id;
+
+                    db.Friend.Add(friend2);
+                    db.SaveChanges();
+                }
+                return RedirectToAction("FriendsAccount", "Accounts");
             }
 
             ViewBag.Friend1Id = new SelectList(db.Account, "AccountId", "UserName", friend.Friend1Id);
@@ -132,28 +163,6 @@ namespace StartToBike.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        public ActionResult FriendsAccount()
-        {
-            ///<summary>
-            ///Check if the user is already logged in 
-            /// </summary>
-            Account logInAccount = Account.LogInAccount;
-            if (logInAccount == null)
-            {
-                return RedirectToAction("Login", "Accounts");
-            }
-
-            AccountFriends accountFriends = new AccountFriends();
-
-            accountFriends.Account = db.Account.Find(logInAccount.AccountId);
-            accountFriends.Friends = db.Friend.Where(a => a.Friend1Id == logInAccount.AccountId).Select(a => a.Account);
-            accountFriends.Friends = db.Friend.Where(a => a.Friend2Id == logInAccount.AccountId).Select(a => a.Account);
-
-
-
-            return View(accountFriends);
         }
     }
 }

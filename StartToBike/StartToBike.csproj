@@ -289,7 +289,7 @@
     <Content Include="Views\Friends\Edit.cshtml" />
     <Content Include="Views\Friends\Index.cshtml" />
     <Content Include="Views\Accounts\DetailsLogInAccount.cshtml" />
-    <Content Include="Views\Friends\FriendsAccount.cshtml" />
+    <Content Include="Views\Accounts\FriendsAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
