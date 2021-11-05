@@ -1,4 +1,4 @@
-﻿@model StartToBike.Models.TrainingAccount
+﻿@model StartToBike.Models.AccountTraining
 
 @{
     ViewBag.Title = "Edit";
@@ -12,12 +12,12 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>TrainingAccount</h4>
+        <h4>AccountTraining</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.TrainingId)
-
         @Html.HiddenFor(model => model.AccountId)
+
+        @Html.HiddenFor(model => model.TrainingId)
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

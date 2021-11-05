@@ -55,7 +55,7 @@
         @Html.DisplayFor(modelItem => item.Email)
     </td>
     <td>
-        @Html.ActionLink("Remove", "RemoveUserFromGame", new { trainingid = Model.Training.TrainingID, accountid = item.AccountId })
+        @Html.ActionLink("Remove", "RemoveUserFromGame", new { trainingid = Model.Training.TrainingId, accountid = item.AccountId })
     </td>
 
 </tr>}
@@ -63,6 +63,6 @@
     </table>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Training.TrainingID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Training.TrainingId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

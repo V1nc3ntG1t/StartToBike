@@ -1,4 +1,4 @@
-﻿@model StartToBike.Models.TrainingAccount
+﻿@model StartToBike.Models.AccountTraining
 
 @{
     ViewBag.Title = "Details";
@@ -8,23 +8,23 @@
 <h2>Details</h2>
 
 <div>
-    <h4>TrainingAccount</h4>
+    <h4>AccountTraining</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.ACCOUNT.Email)
+            @Html.DisplayNameFor(model => model.Account.Email)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ACCOUNT.Email)
+            @Html.DisplayFor(model => model.Account.Email)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TRAINING.Title)
+            @Html.DisplayNameFor(model => model.Training.Title)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TRAINING.Title)
+            @Html.DisplayFor(model => model.Training.Title)
         </dd>
 
     </dl>

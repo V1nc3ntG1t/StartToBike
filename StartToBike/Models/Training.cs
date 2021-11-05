@@ -10,7 +10,7 @@ namespace StartToBike.Models
         /// <summary>
         /// Id of the training (PK)
         /// </summary>
-        public int TrainingID { get; set; }
+        public int TrainingId { get; set; }
         /// <summary>
         /// The title of the training
         /// </summary>
@@ -25,7 +25,7 @@ namespace StartToBike.Models
         public ICollection<Account> Users { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TrainingAccount> TrainingAccounts { get; set; }
+        public virtual ICollection<AccountTraining> AccountTraining { get; set; }
 
         internal bool AddUsersToTraining(List<Account> _users)
         {

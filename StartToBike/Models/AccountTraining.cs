@@ -7,21 +7,21 @@ using System.Web;
 
 namespace StartToBike.Models
 {
-    [Table("TrainingAccount")]
-    public class TrainingAccount
+    [Table("AccountTraining")]
+    public class AccountTraining
     {
         [Key]
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int TrainingId { get; set; }
+        public int AccountId { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int AccountId { get; set; }
+        public int TrainingId { get; set; }
 
-        public virtual Account ACCOUNT { get; set; }
+        public virtual Account Account { get; set; }
 
-        public virtual Training TRAINING { get; set; }
+        public virtual Training Training { get; set; }
     }
 }

@@ -131,41 +131,45 @@
     <Compile Include="Controllers\AccountCatalogsController.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\AccountToursController.cs" />
+    <Compile Include="Controllers\AccountTrainingsController.cs" />
     <Compile Include="Controllers\ChallengesController.cs" />
     <Compile Include="Controllers\FriendsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PerformancesController.cs" />
     <Compile Include="Controllers\QuestsController.cs" />
     <Compile Include="Controllers\ToursController.cs" />
-    <Compile Include="Controllers\TrainingAccountsController.cs" />
     <Compile Include="Controllers\TrainingsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202111031924548_InitialCreate.cs" />
-    <Compile Include="Migrations\202111031924548_InitialCreate.Designer.cs">
-      <DependentUpon>202111031924548_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202111051604045_InitialCreate.cs" />
+    <Compile Include="Migrations\202111051604045_InitialCreate.Designer.cs">
+      <DependentUpon>202111051604045_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202111042141280_Training.cs" />
-    <Compile Include="Migrations\202111042141280_Training.Designer.cs">
-      <DependentUpon>202111042141280_Training.cs</DependentUpon>
+    <Compile Include="Migrations\202111051721377_InitialCreate1.cs" />
+    <Compile Include="Migrations\202111051721377_InitialCreate1.Designer.cs">
+      <DependentUpon>202111051721377_InitialCreate1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202111050934566_Training1.cs" />
-    <Compile Include="Migrations\202111050934566_Training1.Designer.cs">
-      <DependentUpon>202111050934566_Training1.cs</DependentUpon>
+    <Compile Include="Migrations\202111051739324_InitialCreate2.cs" />
+    <Compile Include="Migrations\202111051739324_InitialCreate2.Designer.cs">
+      <DependentUpon>202111051739324_InitialCreate2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111051748199_InitialCreate4.cs" />
+    <Compile Include="Migrations\202111051748199_InitialCreate4.Designer.cs">
+      <DependentUpon>202111051748199_InitialCreate4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Friend.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountCatalog.cs" />
     <Compile Include="Models\AccountTour.cs" />
+    <Compile Include="Models\AccountTraining.cs" />
     <Compile Include="Models\Challenge.cs" />
     <Compile Include="Models\DBContext.cs" />
     <Compile Include="Models\Performance.cs" />
     <Compile Include="Models\Quest.cs" />
     <Compile Include="Models\Tour.cs" />
     <Compile Include="Models\Training.cs" />
-    <Compile Include="Models\TrainingAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AccountFriends.cs" />
     <Compile Include="ViewModels\UsersPerTraining.cs" />
@@ -264,6 +268,11 @@
     <Content Include="Views\AccountTours\Details.cshtml" />
     <Content Include="Views\AccountTours\Edit.cshtml" />
     <Content Include="Views\AccountTours\Index.cshtml" />
+    <Content Include="Views\AccountTrainings\Create.cshtml" />
+    <Content Include="Views\AccountTrainings\Delete.cshtml" />
+    <Content Include="Views\AccountTrainings\Details.cshtml" />
+    <Content Include="Views\AccountTrainings\Edit.cshtml" />
+    <Content Include="Views\AccountTrainings\Index.cshtml" />
     <Content Include="Views\Challenges\Create.cshtml" />
     <Content Include="Views\Challenges\Delete.cshtml" />
     <Content Include="Views\Challenges\Details.cshtml" />
@@ -285,11 +294,13 @@
     <Content Include="Views\Tours\Edit.cshtml" />
     <Content Include="Views\Tours\Index.cshtml" />
     <Content Include="Views\Accounts\Login.cshtml" />
+    <Content Include="Views\Trainings\Admin.cshtml" />
+    <Content Include="Views\Trainings\Catalog.cshtml" />
     <Content Include="Views\Trainings\Create.cshtml" />
     <Content Include="Views\Trainings\Delete.cshtml" />
     <Content Include="Views\Trainings\Details.cshtml" />
     <Content Include="Views\Trainings\Edit.cshtml" />
-    <Content Include="Views\Trainings\Catalog.cshtml" />
+    <Content Include="Views\Trainings\Index.cshtml" />
     <Content Include="Views\Friends\Create.cshtml" />
     <Content Include="Views\Friends\Delete.cshtml" />
     <Content Include="Views\Friends\Details.cshtml" />
@@ -299,13 +310,8 @@
     <Content Include="Views\Accounts\FriendsAccount.cshtml" />
     <Content Include="Views\Challenges\ChallengesAccount.cshtml" />
     <Content Include="Views\Accounts\FriendsToChallenge.cshtml" />
-    <Content Include="Views\Trainings\Admin.cshtml" />
-    <Content Include="Views\Trainings\Index.cshtml" />
-    <Content Include="Views\TrainingAccounts\Create.cshtml" />
-    <Content Include="Views\TrainingAccounts\Delete.cshtml" />
-    <Content Include="Views\TrainingAccounts\Details.cshtml" />
-    <Content Include="Views\TrainingAccounts\Edit.cshtml" />
-    <Content Include="Views\TrainingAccounts\Index.cshtml" />
+    <Content Include="Views\Tours\HomeScreen.cshtml" />
+    <Content Include="Views\Tours\TourAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -324,14 +330,17 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202111031924548_InitialCreate.resx">
-      <DependentUpon>202111031924548_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202111051604045_InitialCreate.resx">
+      <DependentUpon>202111051604045_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111042141280_Training.resx">
-      <DependentUpon>202111042141280_Training.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202111051721377_InitialCreate1.resx">
+      <DependentUpon>202111051721377_InitialCreate1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111050934566_Training1.resx">
-      <DependentUpon>202111050934566_Training1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202111051739324_InitialCreate2.resx">
+      <DependentUpon>202111051739324_InitialCreate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111051748199_InitialCreate4.resx">
+      <DependentUpon>202111051748199_InitialCreate4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

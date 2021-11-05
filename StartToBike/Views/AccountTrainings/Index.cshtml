@@ -1,4 +1,4 @@
-﻿@model IEnumerable<StartToBike.Models.TrainingAccount>
+﻿@model IEnumerable<StartToBike.Models.AccountTraining>
 
 @{
     ViewBag.Title = "Index";
@@ -13,10 +13,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ACCOUNT.Email)
+            @Html.DisplayNameFor(model => model.Account.Email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TRAINING.Title)
+            @Html.DisplayNameFor(model => model.Training.Title)
         </th>
         <th></th>
     </tr>
@@ -24,10 +24,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ACCOUNT.Email)
+            @Html.DisplayFor(modelItem => item.Account.Email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TRAINING.Title)
+            @Html.DisplayFor(modelItem => item.Training.Title)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
