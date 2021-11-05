@@ -14,13 +14,14 @@ namespace StartToBike.Migrations
                         AccountId = c.Int(nullable: false, identity: true),
                         Email = c.String(nullable: false, maxLength: 256),
                         Name = c.String(nullable: false),
-                        BirthDate = c.String(nullable: false),
+                        UserName = c.String(nullable: false, maxLength: 50),
+                        BirthDate = c.DateTime(nullable: false),
                         Gender = c.String(nullable: false),
                         Password = c.String(nullable: false),
                         City = c.String(nullable: false),
-                        Picture = c.Binary(nullable: false, storeType: "image"),
+                        Picture = c.Binary(storeType: "image"),
                         RoleId = c.Int(nullable: false),
-                        TrainingId = c.Int(),
+                        TrainingLevel = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.AccountId)
                 .ForeignKey("dbo.AccountCatalog", t => t.RoleId)
@@ -84,6 +85,7 @@ namespace StartToBike.Migrations
                         StartDate = c.DateTime(nullable: false),
                         Reward = c.String(),
                         Task = c.String(),
+                        Status = c.String(),
                     })
                 .PrimaryKey(t => t.ChallengeId);
             
@@ -96,6 +98,30 @@ namespace StartToBike.Migrations
                         QuestTask = c.String(),
                     })
                 .PrimaryKey(t => t.QuestId);
+            
+            CreateTable(
+                "dbo.Friend",
+                c => new
+                    {
+                        Friend1Id = c.Int(nullable: false),
+                        Friend2Id = c.Int(nullable: false),
+                        StartDate = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.Friend1Id, t.Friend2Id, t.StartDate })
+                .ForeignKey("dbo.Account", t => t.Friend1Id)
+                .ForeignKey("dbo.Account", t => t.Friend2Id)
+                .Index(t => t.Friend1Id)
+                .Index(t => t.Friend2Id);
+            
+            CreateTable(
+                "dbo.Trainings",
+                c => new
+                    {
+                        TrainingId = c.Int(nullable: false, identity: true),
+                        Title = c.String(),
+                        Level = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.TrainingId);
             
             CreateTable(
                 "dbo.ChallengeTour",
@@ -155,6 +181,8 @@ namespace StartToBike.Migrations
         {
             DropForeignKey("dbo.AccountQuest", "QuestId", "dbo.Quest");
             DropForeignKey("dbo.AccountQuest", "AccountId", "dbo.Account");
+            DropForeignKey("dbo.Friend", "Friend2Id", "dbo.Account");
+            DropForeignKey("dbo.Friend", "Friend1Id", "dbo.Account");
             DropForeignKey("dbo.AccountChallenge", "ChallengeId", "dbo.Challenge");
             DropForeignKey("dbo.AccountChallenge", "AccountId", "dbo.Account");
             DropForeignKey("dbo.AccountTour", "AccountId", "dbo.Account");
@@ -173,6 +201,8 @@ namespace StartToBike.Migrations
             DropIndex("dbo.QuestTour", new[] { "QuestId" });
             DropIndex("dbo.ChallengeTour", new[] { "TourId" });
             DropIndex("dbo.ChallengeTour", new[] { "ChallengeId" });
+            DropIndex("dbo.Friend", new[] { "Friend2Id" });
+            DropIndex("dbo.Friend", new[] { "Friend1Id" });
             DropIndex("dbo.AccountTour", new[] { "PerformanceId" });
             DropIndex("dbo.AccountTour", new[] { "AccountId" });
             DropIndex("dbo.Account", new[] { "RoleId" });
@@ -180,6 +210,8 @@ namespace StartToBike.Migrations
             DropTable("dbo.AccountChallenge");
             DropTable("dbo.QuestTour");
             DropTable("dbo.ChallengeTour");
+            DropTable("dbo.Trainings");
+            DropTable("dbo.Friend");
             DropTable("dbo.Quest");
             DropTable("dbo.Challenge");
             DropTable("dbo.Tour");

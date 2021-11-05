@@ -13,7 +13,7 @@ namespace StartToBike.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202111050934566_Training1"; }
+            get { return "202111041907049_Training1"; }
         }
         
         string IMigrationMetadata.Source

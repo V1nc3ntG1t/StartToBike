@@ -7,13 +7,13 @@ namespace StartToBike.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class InitialCreate : IMigrationMetadata
+    public sealed partial class InitialCreate4 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate4));
         
         string IMigrationMetadata.Id
         {
-            get { return "202111031924548_InitialCreate"; }
+            get { return "202111051748199_InitialCreate4"; }
         }
         
         string IMigrationMetadata.Source
