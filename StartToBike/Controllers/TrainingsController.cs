@@ -44,10 +44,10 @@ namespace StartToBike.Controllers
                 return View(training);
         }
 
-        /*// POST: Game/Join/5
+        // POST: Game/Join/5
         [HttpPost, ActionName("Join")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> JoinConfirmed(int id)
+        public async ActionResult JoinConfirmed(int id)
         {
             Training training = db.Trainings.Find(id);
             Account logInAccount = Account.LogInAccount;
@@ -60,7 +60,7 @@ namespace StartToBike.Controllers
 
             Training training1 = new Training();
 
-            var exists = await db.TrainingAccounts.Where(g => g.TrainingId == training1.TrainingID).Where(g => g.AccountId == logInAccount.AccountId).AnyAsync();
+            var exists = await db.TrainingAccounts.Where(g => g.TrainingId == training1.TrainingID).Where(g => g.AccountId == logInAccount.AccountId).Any();
             if (exists)
             {
                 return RedirectToAction("TrainingAccount", new { error = "You already joined the Training!" });
@@ -71,7 +71,7 @@ namespace StartToBike.Controllers
                 db.SaveChanges();
                 return RedirectToAction("TrainingAccount", new { error = "You succesfully joined the Training!" });
             }
-        }*/
+        }
 
         // GET: Trainings/Details/5
         public ActionResult Details(int? id)

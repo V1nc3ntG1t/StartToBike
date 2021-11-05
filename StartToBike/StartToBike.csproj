@@ -306,7 +306,6 @@
     <Content Include="Views\TrainingAccounts\Details.cshtml" />
     <Content Include="Views\TrainingAccounts\Edit.cshtml" />
     <Content Include="Views\TrainingAccounts\Index.cshtml" />
-    <Content Include="Views\Trainings\Join.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
