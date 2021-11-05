@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using StartToBike.Models;
@@ -21,17 +22,56 @@ namespace StartToBike.Controllers
             return View(db.Trainings.ToList());
         }
 
-        /*// GET: Trainings/Catalog
-        public ActionResult JoinTraining()
-        {
-            return View();
-        }*/
-
-        // GET: Trainings/Join
+        // GET: Trainings/Catalog
         public ActionResult Catalog()
         {
             return View(db.Trainings.ToList());
         }
+
+        // POST: Trainings/Join/5
+        public ActionResult Join(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Training training = db.Trainings.Find(id);
+            if (training == null)
+            {
+                return HttpNotFound();
+            }
+            else
+                return View(training);
+        }
+
+        /*// POST: Game/Join/5
+        [HttpPost, ActionName("Join")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> JoinConfirmed(int id)
+        {
+            Training training = db.Trainings.Find(id);
+            Account logInAccount = Account.LogInAccount;
+
+            var t = new TrainingAccount
+            {
+                TrainingId = Training.TrainingID,
+                AccountId = logInAccount.AccountId,
+            };
+
+            Training training1 = new Training();
+
+            var exists = await db.TrainingAccounts.Where(g => g.TrainingId == training1.TrainingID).Where(g => g.AccountId == logInAccount.AccountId).AnyAsync();
+            if (exists)
+            {
+                return RedirectToAction("TrainingAccount", new { error = "You already joined the Training!" });
+            }
+            else
+            {
+                db.TrainingAccounts.Add(t);
+                db.SaveChanges();
+                return RedirectToAction("TrainingAccount", new { error = "You succesfully joined the Training!" });
+            }
+        }*/
 
         // GET: Trainings/Details/5
         public ActionResult Details(int? id)
