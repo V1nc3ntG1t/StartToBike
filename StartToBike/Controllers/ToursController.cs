@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using StartToBike.Models;
+using StartToBike.ViewModels;
 
 namespace StartToBike.Controllers
 {
@@ -40,7 +41,15 @@ namespace StartToBike.Controllers
             {
                 return HttpNotFound();
             }
-            return View(tour);
+            AccountInTour accountInTour = new AccountInTour();
+            accountInTour.Tour = db.Tour.Find(id);
+            accountInTour.Players = db.AccountTour.Where(g => g.TourId == id).Select(g => g.Account);
+            TourSreenGame tourSreen = new TourSreenGame();
+
+
+            AccountInTour.GameLoaded = db.Tour.Find(id);
+
+            return View(accountInTour);
         }
 
         // GET: Tours/Create
@@ -137,29 +146,30 @@ namespace StartToBike.Controllers
             // This is the log in account
             Account account = Account.LogInAccount;
             // this is the id of the tour
-            Tour tOUR = db.Tour.Find(id);
-            AccountTour logInAccount = db.AccountTour.First(g => g.TourId == id && g.AccountId == account.AccountId);
+            Tour tour = db.Tour.Find(id);
+           
 
             var t = new AccountTour
             {
-                TourId = tOUR.TourId,
-                AccountId = logInAccount.AccountId,
+                TourId = tour.TourId,
+                AccountId = account.AccountId,
             };
 
             Tour game = new Tour();
-           
+            
 
-            var exists = db.AccountTour.Where(g => g.TourId == tOUR.TourId).Where(g => g.AccountId == logInAccount.AccountId).AnyAsync();
+            var exists = db.AccountTour.Where(g => g.TourId == tour.TourId).Where(g => g.AccountId == account.AccountId).Any();
+            
             // Hier moet ik kijken naar of het account de tour heeft gejoined
             if (exists)
             {
-                return RedirectToAction("Index", new { error = "You already joined the game!" });
+               return RedirectToAction("Index", new { error = "You already joined the Tour!" });
             }
             else
             {
-                db.AccountTour.Add(t);
-                db.SaveChanges();
-                return RedirectToAction("Index", new { error = "You succesfully joined the game!" });
+              db.AccountTour.Add(t);
+              db.SaveChanges();
+                return RedirectToAction("Index", new { error = "You succesfully joined the Tour!" });
             }
 
         }
