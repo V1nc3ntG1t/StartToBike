@@ -149,9 +149,9 @@
     <Compile Include="Migrations\202111031933340_Training.Designer.cs">
       <DependentUpon>202111031933340_Training.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202111041907049_Training1.cs" />
-    <Compile Include="Migrations\202111041907049_Training1.Designer.cs">
-      <DependentUpon>202111041907049_Training1.cs</DependentUpon>
+    <Compile Include="Migrations\202111042003229_InitialCreate1.cs" />
+    <Compile Include="Migrations\202111042003229_InitialCreate1.Designer.cs">
+      <DependentUpon>202111042003229_InitialCreate1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Friend.cs" />
@@ -166,7 +166,8 @@
     <Compile Include="Models\Training.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AccountFriends.cs" />
-    <Compile Include="ViewModels\UsersPerTraining.cs" />
+    <Compile Include="ViewModels\AccountInTour.cs" />
+    <Compile Include="ViewModels\TourSreenGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -297,6 +298,8 @@
     <Content Include="Views\Accounts\FriendsAccount.cshtml" />
     <Content Include="Views\Challenges\ChallengesAccount.cshtml" />
     <Content Include="Views\Accounts\FriendsToChallenge.cshtml" />
+    <Content Include="Views\Tours\HomeScreen.cshtml" />
+    <Content Include="Views\Tours\TourAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -321,8 +324,8 @@
     <EmbeddedResource Include="Migrations\202111031933340_Training.resx">
       <DependentUpon>202111031933340_Training.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111041907049_Training1.resx">
-      <DependentUpon>202111041907049_Training1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202111042003229_InitialCreate1.resx">
+      <DependentUpon>202111042003229_InitialCreate1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

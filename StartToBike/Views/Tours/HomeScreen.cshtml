@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Tour Screen</h2>
+
+
+
+<div class="jumbotron">
+
+    <h3>Welkom bij ons assortiment van touren</h3>
+    <p>Wilt u een tour aanmaken of joinen?</p>
+
+
+    @Html.ActionLink("Tour Aanmaken", "Create", new { } ) |
+    @Html.ActionLink("Tour Joinen", "Index", new {})
+  
+
+
+</div>
