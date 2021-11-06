@@ -28,6 +28,12 @@ namespace StartToBike.Controllers
             return View(db.Trainings.ToList());
         }
 
+        // GET: Trainings/Admin
+        public ActionResult Admin()
+        {
+            return View(db.Trainings.ToList());
+        }
+
         // GET: Trainings/Details/5
         public ActionResult Details(int? id)
         {
@@ -120,7 +126,7 @@ namespace StartToBike.Controllers
             {
                 db.Trainings.Add(training);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Admin");
             }
 
             return View(training);
@@ -152,7 +158,7 @@ namespace StartToBike.Controllers
             {
                 db.Entry(training).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Admin");
             }
             return View(training);
         }
@@ -180,7 +186,7 @@ namespace StartToBike.Controllers
             Training training = db.Trainings.Find(id);
             db.Trainings.Remove(training);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Admin");
         }
 
         protected override void Dispose(bool disposing)
@@ -229,13 +235,13 @@ namespace StartToBike.Controllers
 
             if (exists)
             {
-                return RedirectToAction("Index", new { error = "You already joined a Training!" });
+                return RedirectToAction("Catalog", new { error = "You already joined this Training!" });
             }
             else
             {
                 db.AccountTrainings.Add(t);
                 db.SaveChanges();
-                return RedirectToAction("Index", new { error = "You succesfully joined the Training!" });
+                return RedirectToAction("Catalog", new { error = "You succesfully joined the Training!" });
             }
 
         }
