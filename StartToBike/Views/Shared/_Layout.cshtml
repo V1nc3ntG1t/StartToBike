@@ -24,23 +24,20 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Challenges", "ChallengesAccount", "Challenges")</li>
-                    <li>@Html.ActionLink("Quests", "Index", "Quests")</li>
-                    <li>@Html.ActionLink("Trainingsschema", "#", "#")</li>
-                    <li>@Html.ActionLink("Vrienden", "FriendsAccount", "Accounts")</li>
-                    <li>@Html.ActionLink("Leaderboard", "Leaderboard", "Home")</li>
-                    <li>@Html.ActionLink("Tours", "HomeScreen", "Tours")</li>
+
+                    <li >@Html.ActionLink("Challenges", "ChallengesAccount", "Challenges")</li>
+                    <li >@Html.ActionLink("Quests", "Index", "Quests")</li>
+                    <li >@Html.ActionLink("Trainingsschema", "#", "#")</li>
+                    <li >@Html.ActionLink("Vrienden", "FriendsAccount", "Accounts")</li>
+                    <li >@Html.ActionLink("Leaderboard", "Leaderboard", "Home")</li>
+                    <li >@Html.ActionLink("Tours", "HomeScreen", "Tours")</li>
+
+                    <li class="right">@Html.ActionLink("Your Account", "DetailsLogInAccount", "Accounts")</li>
+                    <li >@Html.ActionLink("Register", "Create", "Accounts")</li>
+                    <li >@Html.ActionLink("Log in", "Login", "Accounts")</li>
 
                 </ul>
-                @*<img id="logo-front" src="~/Content/img/logo.png" />*@
-              
             </div>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li>@Html.ActionLink("Your Account", "DetailsLogInAccount", "Accounts")</li>
-                <li>@Html.ActionLink("Register", "Create", "Accounts")</li>
-                <li>@Html.ActionLink("Log in", "Login", "Accounts")</li>
-            </ul>
         </div>
     </div>
 

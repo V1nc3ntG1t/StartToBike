@@ -13,7 +13,7 @@ namespace StartToBike.Controllers
 {
     public class ChallengesController : Controller
     {
-        private DBContext db = new DBContext();
+       readonly DBContext db = new DBContext();
 
         // GET: Challenges
         public ActionResult Index()

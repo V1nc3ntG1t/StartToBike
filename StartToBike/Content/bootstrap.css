@@ -10,9 +10,23 @@ html {
     -webkit-text-size-adjust: 100%;
 }
 
+.left {
+    float: left;
+    color: red;
+}
+
+#progress-img{
+    width: 100%;
+}
+.right {
+    float: right;
+    color: blue;
+    margin-left: 100px;
+}
+
 body {
     margin: 0;
-    background-color: #777777;
+    background-color: #ddd;
 }
 
 .info-box {
@@ -1430,7 +1444,7 @@ body {
     font-size: 14px;
     line-height: 1.42857143;
     color: #333333;
-    background-color: #777777;
+    background-color: #ddd;
 }
 
 input,
