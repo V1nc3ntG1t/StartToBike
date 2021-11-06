@@ -9,7 +9,6 @@ namespace StartToBike.Models
     [Table("Quest")]
     public partial class Quest
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Quest()
         {
             Account = new HashSet<Account>();
@@ -22,10 +21,29 @@ namespace StartToBike.Models
 
         public string QuestTask { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public string Status { get; set; }
+
         public virtual ICollection<Account> Account { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tour> Tour { get; set; }
+
+
+        public Boolean CreateQuest()
+        {
+            Status = "open";
+
+            return true;
+        }
+
+        public Boolean QuestCompleted()
+        {
+            if (Status == "Quest Completed")
+            {
+                return false;
+            }
+
+            Status = "Quest Completed";
+            return true;
+        }
     }
 }

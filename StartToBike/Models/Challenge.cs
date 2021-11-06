@@ -9,7 +9,6 @@ namespace StartToBike.Models
     [Table("Challenge")]
     public partial class Challenge
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Challenge()
         {
             Account = new HashSet<Account>();
@@ -28,10 +27,8 @@ namespace StartToBike.Models
         public string Task { get; set; }
         public string Status { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Account> Account { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tour> Tour { get; set; }
 
         public Boolean CreateChallenge()

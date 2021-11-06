@@ -12,7 +12,7 @@ namespace StartToBike.Controllers
 {
     public class QuestsController : Controller
     {
-        private DBContext db = new DBContext();
+        readonly DBContext db = new DBContext();
 
         // GET: Quests
         public ActionResult Index()
@@ -50,11 +50,21 @@ namespace StartToBike.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Quest.Add(quest);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                Boolean Valid = quest.CreateQuest();
+                if (Valid)
+                {
+                    Account logInAccount = Account.LogInAccount;
 
+
+                    quest.Account.Add(logInAccount);
+
+
+                    db.Quest.Add(quest);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+            }
             return View(quest);
         }
 
@@ -122,6 +132,43 @@ namespace StartToBike.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult QuestsAccount (string error)
+        {
+            ViewBag.ErrorMessage = error;
+            ///<summary>
+            ///Check if the user is already logged in 
+            /// </summary>
+            Account logInAccount = Account.LogInAccount;
+            if (logInAccount == null)
+            {
+                return RedirectToAction("Login", "Accounts");
+            }
+
+            ///<summary>
+            ///Fills in the quests for the account who logged in
+            /// </summary>
+            var account = db.Account.Include(x => x.Quest).FirstOrDefault(x => x.AccountId == logInAccount.AccountId);
+            return View(account);
+        }
+
+
+        public ActionResult QuestCompleted(int id)
+        {
+            Quest quest = db.Quest.Find(id);
+
+            Boolean Valid = quest.QuestCompleted();
+
+
+            db.SaveChanges();
+
+            if (Valid)
+            {
+                return RedirectToAction("QuestAccount", new { error = "You completed the quest!" });
+            }
+
+            return RedirectToAction("QuestAccount", new { error = "Error, You can't complete this quest!" });
         }
     }
 }

@@ -149,6 +149,10 @@
     <Compile Include="Migrations\202111031933340_Training.Designer.cs">
       <DependentUpon>202111031933340_Training.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111061015055_quest.cs" />
+    <Compile Include="Migrations\202111061015055_quest.Designer.cs">
+      <DependentUpon>202111061015055_quest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Friend.cs" />
     <Compile Include="Models\Account.cs" />
@@ -213,6 +217,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\progress.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -315,6 +320,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111031933340_Training.resx">
       <DependentUpon>202111031933340_Training.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111061015055_quest.resx">
+      <DependentUpon>202111061015055_quest.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
