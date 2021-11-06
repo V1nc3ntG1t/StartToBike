@@ -55,11 +55,11 @@ namespace StartToBike.Controllers
 
                 if (Valid)
                 {
-                    Account logInAccount = Account.LogInAccount;
-                    Account accountToChallenge = Friend.FriendToChallenge;
+                    Account logInAccount = db.Account.Find(Account.LogInAccount.AccountId);
+                    Account friendToChallenge = db.Account.Find(Friend.FriendToChallenge.AccountId);
 
                     challenge.Account.Add(logInAccount);
-                    challenge.Account.Add(accountToChallenge);
+                    challenge.Account.Add(friendToChallenge);
 
                     db.Challenge.Add(challenge);
                     db.SaveChanges();
