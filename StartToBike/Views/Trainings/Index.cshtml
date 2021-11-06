@@ -6,34 +6,15 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Level)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Level)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TrainingID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TrainingID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TrainingID })
-        </td>
-    </tr>
-}
-
-</table>
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Nieuwe Training aanmaken</h2>
+            <p>@Html.ActionLink("Training Aanmaken", "Create", "Trainings")</p>
+        </div>
+        <div class="col-md-6">
+            <h2>Lijst van beschikbare Trainingen</h2>
+            <p>@Html.ActionLink("Training Deelnemen", "Catalog", "Trainings")</p>
+        </div>
+    </div>
+</div>

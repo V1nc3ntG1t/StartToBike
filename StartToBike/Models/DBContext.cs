@@ -78,5 +78,7 @@ namespace StartToBike.Models
         }
 
         public System.Data.Entity.DbSet<StartToBike.Models.Training> Trainings { get; set; }
+
+        public System.Data.Entity.DbSet<StartToBike.Models.AccountTraining> AccountTrainings { get; set; }
     }
 }

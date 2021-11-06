@@ -11,11 +11,11 @@ namespace StartToBike.Migrations
                 "dbo.Trainings",
                 c => new
                     {
-                        TrainingID = c.Int(nullable: false, identity: true),
+                        TrainingId = c.Int(nullable: false, identity: true),
                         Title = c.String(),
-                        Level = c.Int(nullable: false),
+                        TrainingLevel = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.TrainingID);
+                .PrimaryKey(t => t.TrainingId);
             
         }
         

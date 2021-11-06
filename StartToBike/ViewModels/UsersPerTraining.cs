@@ -11,5 +11,7 @@ namespace StartToBike.ViewModels
         public Training Training { get; set; }
 
         public ICollection<Account> Users { get; set; }
+
+        public static Training TrainingLoaded;
     }
 }

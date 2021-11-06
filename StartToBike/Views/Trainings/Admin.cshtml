@@ -1,0 +1,40 @@
+﻿@model IEnumerable<StartToBike.Models.Training>
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Admin</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrainingLevel)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrainingLevel)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.TrainingId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.TrainingId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.TrainingId })
+            </td>
+        </tr>
+    }
+
+</table>
