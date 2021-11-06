@@ -167,7 +167,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AccountFriends.cs" />
     <Compile Include="ViewModels\AccountInTour.cs" />
-    <Compile Include="ViewModels\TourSreenGame.cs" />
+    <Compile Include="ViewModels\TourScreenGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -300,6 +300,7 @@
     <Content Include="Views\Accounts\FriendsToChallenge.cshtml" />
     <Content Include="Views\Tours\HomeScreen.cshtml" />
     <Content Include="Views\Tours\TourAccount.cshtml" />
+    <Content Include="Views\Tours\TourScreen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -44,7 +44,7 @@ namespace StartToBike.Controllers
             AccountInTour accountInTour = new AccountInTour();
             accountInTour.Tour = db.Tour.Find(id);
             accountInTour.Players = db.AccountTour.Where(g => g.TourId == id).Select(g => g.Account);
-            TourSreenGame tourSreen = new TourSreenGame();
+            TourScreenGame tourSreen = new TourScreenGame();
 
 
             AccountInTour.GameLoaded = db.Tour.Find(id);
@@ -173,6 +173,15 @@ namespace StartToBike.Controllers
             }
 
         }
-        
+        public ActionResult TourScreen(int? id)
+        {
+            Tour tour = db.Tour.Find(id);
+            Account loginaccount = Account.LogInAccount;
+
+            TourScreenGame.TourLoaded = db.Tour.Find(id);
+
+            return View();
+        }
+
     }
 }

@@ -1,0 +1,76 @@
+﻿@model StartToBike.ViewModels.TourScreenGame
+
+@{
+    ViewBag.Title = "TourScreenGame";
+}
+
+<h2>TourScreen</h2>
+
+<div>
+    <h4> Tour details</h4>
+    <hr />
+    <dl class="dl-horizontal"
+        <dt>
+            @Html.DisplayNameFor(Model => Model.Tour.TourName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.Tour.TourName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(Model => Model.Tour.Distance)
+        </dt>
+        <dd>
+            @Html.DisplayFor(Model => Model.Tour.Distance)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(Model => Model.Tour.Location)
+        </dt>
+        <dd>
+            @Html.DisplayFor(Model => Model.Tour.Location)
+        </dd>
+         <dt>
+            @Html.DisplayNameFor(Model => Model.Tour.StartDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(Model => Model.Tour.StartDate)
+        </dd>
+    </dl>
+
+</div>
+
+<div>
+
+    <h4>Tour players</h4>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(Model => Model.Players.FirstOrDefault().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.Players.FirstOrDefault().Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.Players.FirstOrDefault().TrainingLevel)
+            </th>
+        </tr>
+
+        @foreach (var item in Model.Players)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(Model => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(Model => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(Model => item.TrainingLevel)
+        </td>
+    </tr>
+        }
+      
+    </table>
+
+
+</div>
