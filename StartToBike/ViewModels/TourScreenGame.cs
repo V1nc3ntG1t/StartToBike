@@ -6,7 +6,7 @@ using StartToBike.Models;
 
 namespace StartToBike.ViewModels
 {
-    public class TourSreenGame
+    public class TourScreenGame
     {
 
         public Tour Tour { get; set; }
