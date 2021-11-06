@@ -21,22 +21,18 @@ namespace StartToBike.Migrations
                 .Index(t => t.TrainingId);
             
             AddColumn("dbo.Account", "Training_TrainingId", c => c.Int());
-            AddColumn("dbo.Trainings", "TrainingLevel", c => c.Int(nullable: false));
             CreateIndex("dbo.Account", "Training_TrainingId");
             AddForeignKey("dbo.Account", "Training_TrainingId", "dbo.Trainings", "TrainingId");
-            DropColumn("dbo.Trainings", "TrainingLevel");
         }
         
         public override void Down()
         {
-            AddColumn("dbo.Trainings", "TrainingLevel", c => c.Int(nullable: false));
             DropForeignKey("dbo.Account", "Training_TrainingId", "dbo.Trainings");
             DropForeignKey("dbo.AccountTraining", "TrainingId", "dbo.Trainings");
             DropForeignKey("dbo.AccountTraining", "AccountId", "dbo.Account");
             DropIndex("dbo.AccountTraining", new[] { "TrainingId" });
             DropIndex("dbo.AccountTraining", new[] { "AccountId" });
             DropIndex("dbo.Account", new[] { "Training_TrainingId" });
-            DropColumn("dbo.Trainings", "TrainingLevel");
             DropColumn("dbo.Account", "Training_TrainingId");
             DropTable("dbo.AccountTraining");
         }
