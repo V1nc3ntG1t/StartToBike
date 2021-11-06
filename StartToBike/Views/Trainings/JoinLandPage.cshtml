@@ -1,10 +1,11 @@
 ﻿@model StartToBike.ViewModels.UsersPerTraining
-
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "JoinLandPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+
+<h2>Training Details</h2>
 
 <div>
     <h4>Training "@Html.DisplayFor(model => model.Training.Title)"</h4>
@@ -59,11 +60,7 @@
                 </td>
 
             </tr>
-}
+        }
 
     </table>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Training.TrainingId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

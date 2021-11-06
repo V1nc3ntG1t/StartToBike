@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -131,6 +131,7 @@
     <Compile Include="Controllers\AccountCatalogsController.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\AccountToursController.cs" />
+    <Compile Include="Controllers\AccountTrainingsController.cs" />
     <Compile Include="Controllers\ChallengesController.cs" />
     <Compile Include="Controllers\FriendsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -157,11 +158,20 @@
     <Compile Include="Migrations\202111061027209_InitialCreate2.Designer.cs">
       <DependentUpon>202111061027209_InitialCreate2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111062143341_InitialCreate3.cs" />
+    <Compile Include="Migrations\202111062143341_InitialCreate3.Designer.cs">
+      <DependentUpon>202111062143341_InitialCreate3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111062212321_InitialCreate4.cs" />
+    <Compile Include="Migrations\202111062212321_InitialCreate4.Designer.cs">
+      <DependentUpon>202111062212321_InitialCreate4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Friend.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountCatalog.cs" />
     <Compile Include="Models\AccountTour.cs" />
+    <Compile Include="Models\AccountTraining.cs" />
     <Compile Include="Models\Challenge.cs" />
     <Compile Include="Models\DBContext.cs" />
     <Compile Include="Models\Performance.cs" />
@@ -172,6 +182,7 @@
     <Compile Include="ViewModels\AccountFriends.cs" />
     <Compile Include="ViewModels\AccountInTour.cs" />
     <Compile Include="ViewModels\TourScreenGame.cs" />
+    <Compile Include="ViewModels\UsersPerTraining.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -305,6 +316,14 @@
     <Content Include="Views\Tours\HomeScreen.cshtml" />
     <Content Include="Views\Tours\TourAccount.cshtml" />
     <Content Include="Views\Tours\TourScreen.cshtml" />
+    <Content Include="Views\Trainings\Admin.cshtml" />
+    <Content Include="Views\Trainings\Catalog.cshtml" />
+    <Content Include="Views\AccountTrainings\Create.cshtml" />
+    <Content Include="Views\AccountTrainings\Delete.cshtml" />
+    <Content Include="Views\AccountTrainings\Details.cshtml" />
+    <Content Include="Views\AccountTrainings\Edit.cshtml" />
+    <Content Include="Views\AccountTrainings\Index.cshtml" />
+    <Content Include="Views\Trainings\JoinLandPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -334,6 +353,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111061027209_InitialCreate2.resx">
       <DependentUpon>202111061027209_InitialCreate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111062143341_InitialCreate3.resx">
+      <DependentUpon>202111062143341_InitialCreate3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111062212321_InitialCreate4.resx">
+      <DependentUpon>202111062212321_InitialCreate4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
