@@ -182,6 +182,38 @@ namespace StartToBike.Controllers
 
             return View();
         }
+        public ActionResult CheckJoin(int id)
+        {
+            Account account = Account.LogInAccount;
+            Tour tour = db.Tour.Find(id);
+            AccountTour logInAccount = db.AccountTour.First(g => g.TourId == id && g.AccountId == account.AccountId);
+
+            if (account.RoleId != 2)
+            {
+                return RedirectToAction("HomeScreen", new { error = "You need to be an Player to join a game" });
+            }
+
+            if (logInAccount. == "Yes")
+            {
+                return RedirectToAction("GamesAccount", new { error = "" });
+            }
+        }
+        public ActionResult CheckCreate(int id)
+        {
+            Account account = Account.LogInAccount;
+            Tour tour = db.Tour.Find(id);
+            AccountTour logInAccount = db.AccountTour.First(g => g.TourId == id && g.AccountId == account.AccountId);
+
+            if (account.RoleId != 2)
+            {
+                return RedirectToAction("HomeScreen", new { error = "You need to be an Operator to Create a game" });
+            }
+
+            if (logInAccount. == "Yes")
+            {
+                return RedirectToAction("Create", new { error = "" });
+            }
+        }
 
     }
 }
