@@ -22,45 +22,20 @@
         <dt>
             @Html.DisplayFor(model => model.Training.TrainingLevel)
         </dt>
-
-        <dd>
-            Current participants
-        </dd>
-        <dt>
-            @Html.DisplayFor(model => model.Training.Users.Count)
-        </dt>
     </dl>
 </div>
 
+<h3>Dit zijn de Tours van deze week:</h3>
 <div>
-    <h4>Users in Training</h4>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Users.FirstOrDefault().UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Users.FirstOrDefault().Email)
-            </th>
-            <th>
-            </th>
-        </tr>
+    <dl>
+        <dt>
+            <p>Tour 1:</p>
+            <p>Rondje door Amsterdam, 15 KM</p>
+        </dt>
 
-        @foreach (var item in Model.Users)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.ActionLink("Remove", "RemoveUserFromGame", new { trainingid = Model.Training.TrainingId, accountid = item.AccountId })
-                </td>
-
-            </tr>
-        }
-
-    </table>
+        <dd>
+            <p>Tour 2:</p>
+            <p>Rennen in het s'avondsbos, 5 KM</p>
+        </dd>
+    </dl>
 </div>

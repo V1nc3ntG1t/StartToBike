@@ -241,7 +241,7 @@ namespace StartToBike.Controllers
             {
                 db.AccountTrainings.Add(t);
                 db.SaveChanges();
-                return RedirectToAction("Catalog", new { error = "You succesfully joined the Training!" });
+                return RedirectToAction("JoinLandPage", new { error = "You succesfully joined the Training!" });
             }
 
         }
