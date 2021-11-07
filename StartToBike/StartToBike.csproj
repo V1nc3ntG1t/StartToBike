@@ -164,6 +164,10 @@
     <Compile Include="Migrations\202111062212321_InitialCreate4.Designer.cs">
       <DependentUpon>202111062212321_InitialCreate4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111071210004_InitialCreate5.cs" />
+    <Compile Include="Migrations\202111071210004_InitialCreate5.Designer.cs">
+      <DependentUpon>202111071210004_InitialCreate5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Friend.cs" />
     <Compile Include="Models\Account.cs" />
@@ -357,6 +361,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111062212321_InitialCreate4.resx">
       <DependentUpon>202111062212321_InitialCreate4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111071210004_InitialCreate5.resx">
+      <DependentUpon>202111071210004_InitialCreate5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
