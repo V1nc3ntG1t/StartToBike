@@ -58,6 +58,12 @@ namespace StartToBike.Models
         [Required]
         public int TrainingLevel { get; set; }
 
+        ///<summary>
+        ///Saves TrainingLevel As A String to convert later
+        /// </summary>
+        [Required]
+        public string TrainingLevelString { get; set; }
+
         public virtual AccountCatalog AccountCatalog { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -80,9 +86,9 @@ namespace StartToBike.Models
         /// </summary>
         public static Account LogInAccount;
 
-
         public Boolean CreateAccount()
         {
+            TrainingLevel = Int32.Parse(TrainingLevelString);
             ///<summary>
             ///When everyting is filled in correct
             /// </summary>
