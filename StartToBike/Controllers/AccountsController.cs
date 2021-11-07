@@ -55,7 +55,7 @@ namespace StartToBike.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "AccountId,Email,Name,UserName,BirthDate,Gender,Password,City,RoleId,TrainingLevel")] Account _account, HttpPostedFileBase image)
+        public async Task<ActionResult> Create([Bind(Include = "AccountId,Email,Name,UserName,BirthDate,Gender,Password,City,RoleId,TrainingLevelString")] Account _account, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
